@@ -1,3 +1,5 @@
+/*http://javac.bg/?p=570*/
+
 drop database if exists gallery;
 create database gallery;
 use gallery;
