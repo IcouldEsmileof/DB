@@ -32,7 +32,7 @@ create table Films(
 	id int auto_increment primary key,
     name varchar(255) not null unique,
     madeIn year not null,
-    lenght double not null,
+    length double not null,
     budget double not null,
     studio_id int not null,
     producer_id int not null,
@@ -64,7 +64,7 @@ VALUES("Robert de Niro", "London, JMS str. 346", 'M','1943-08-17'),
 ("Arnold Schwarzenegger", "London, Monacco str. 478", 'M','1947-07-30'),
 ("Stoyanka Mutafova", "Sofia, Tsar Boris str. 45", 'F','1922-02-02');
 
-INSERT INTO Films(name, madeIn, budget, lenght, studio_id, producer_id)
+INSERT INTO Films(name, madeIn, budget, length, studio_id, producer_id)
 VALUES("Greetings",1968,5000000,120.0,2,3),
 ("Juniour",1994,50000000,115.0,3,1),
 ("If somebody loves you",2010,500000,90.0,1,2);
@@ -107,14 +107,14 @@ group by actor.id, film.id, Actor, Film, film.budget
 having film.budget=budget
 order by film.budget;
 
-select actor.name as Actor, avg(film.lenght) as AvrageLen
+select actor.name as Actor, avg(film.length) as AvrageLen
 from Actors as actor
 join Film_Actors on Film_Actors.actor_id=actor.id
 join Films as film on Film_Actors.film_id=film.id
 where film.id in (
 					select Films.id 
 					from Films 
-					where Films.lenght>(select avg(Films.lenght) 
+					where Films.length>(select avg(Films.length) 
 										from Films 
 										where Films.madeIn>2000)
 					)
